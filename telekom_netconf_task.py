@@ -1,4 +1,5 @@
 from ncclient import manager
+import getpass
 import re
 def validate_ip(ip):
     pattern = r"^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$"
@@ -13,7 +14,7 @@ def main():
         else:
             print("Error: This is not a valid IPv4 address! Please try again.")
    user = input("Username: ")
-   passw = input("Password: ")
+   passw = getpass.getpass("Password: ")
    try:
         print(f"Connecting to {target_ip}...")
         with manager.connect(

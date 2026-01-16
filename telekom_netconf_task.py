@@ -6,13 +6,15 @@ def validate_ip(ip):
         return True
     return False
 def main():
-    target_ip =input("Type IP Address: ")
-    if not validate_ip(target_ip):
-        print("Error: This is not a valid IPv4 address!")
-        return
-    user = input("Username: ")
-    passw = input("Password: ")
-    try:
+   while True:
+        target_ip = input("Type IP Address: ")
+        if validate_ip(target_ip):
+            break
+        else:
+            print("Error: This is not a valid IPv4 address! Please try again.")
+   user = input("Username: ")
+   passw = input("Password: ")
+   try:
         print(f"Connecting to {target_ip}...")
         with manager.connect(
             host=target_ip,
@@ -27,7 +29,7 @@ def main():
             print("\n--- XML Config ---")
             print(config.data_xml)
                
-    except Exception as e:
+   except Exception as e:
         print(f"\nError {e}")
         
 

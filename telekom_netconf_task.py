@@ -24,18 +24,23 @@ def main():
             password=passw,
             hostkey_verify=False
         ) as m:
-            print("Connected succesfully!")
-            print("\nAvailable operations:")
-            print("1 - Get Running Configuration")
-            print("2 - Get Device State & Capabilities")
-            choice = input("Select operation (1 or 2): ")
+            print("Connected succesfully")
+            while True:
+                print("\nAvailable operations:")
+                print("1 - Get Running Configuration")
+                print("2 - Get Device State")
+                choice = input("Select operation (1 or 2): ")
+                if choice == "1" or choice == "2":
+                    break
+                else:
+                    print("Error: Invalid choice. Please enter 1 or 2!")
 
             if choice == "1":
-                print("Requesting 'running' configuration...")
+                print("Requesting running configuration...")
                 result = m.get_config(source='running')
             else:
                 print("Requesting device state...")
-                result = m.get() # Ez a második művelet
+                result = m.get()
 
             print("\n--- XML Result ---")
             print(result.data_xml)

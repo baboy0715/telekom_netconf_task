@@ -8,7 +8,7 @@ def validate_ip(ip):
     return False
 def main():
    while True:
-        target_ip = input("Type IP Address: ")
+        target_ip = input("Enter an IP Address: ")
         if validate_ip(target_ip):
             break
         else:
@@ -25,10 +25,20 @@ def main():
             hostkey_verify=False
         ) as m:
             print("Connected succesfully!")
-            print("Requesting 'running' configuration...")
-            config = m.get_config(source='running')
-            print("\n--- XML Config ---")
-            print(config.data_xml)
+            print("\nAvailable operations:")
+            print("1 - Get Running Configuration")
+            print("2 - Get Device State & Capabilities")
+            choice = input("Select operation (1 or 2): ")
+
+            if choice == "1":
+                print("Requesting 'running' configuration...")
+                result = m.get_config(source='running')
+            else:
+                print("Requesting device state...")
+                result = m.get() # Ez a második művelet
+
+            print("\n--- XML Result ---")
+            print(result.data_xml)
                
    except Exception as e:
         print(f"\nError {e}")

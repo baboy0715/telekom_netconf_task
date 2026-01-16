@@ -39,7 +39,7 @@ def main():
                     print("Requesting running configuration...")
                     result = m.get_config(source='running')
                     break
-                if choice == "2":
+                elif choice == "2":
                     print("Requesting device state...")
                     result = m.get()
                     break
